@@ -8,21 +8,21 @@ If you&rsquo;ve ever wanted to add a sprinkle of user data do your static sites,
 
 1. Pull in the package via Composer
 
-```
-composer require pattern/silhouette
-```
+    ```
+    composer require pattern/silhouette
+    ```
 
 2. Publish the config file
 
-```
-php artisan vendor:publish --provider=Pattern\Silhouette\ServiceProvider
-```
+    ```
+    php artisan vendor:publish --provider=Pattern\Silhouette\ServiceProvider
+    ```
 
 3. If you are using the Eloquent driver for your users, add your user model into your `.env` file
 
-```
-SILHOUETTE_ELOQUENT_MODEL=App\User
-```
+    ```
+    SILHOUETTE_ELOQUENT_MODEL=App\User
+    ```
 
 ### Usage
 
@@ -115,4 +115,4 @@ Many thanks to [Mike Martin](https://mike-martin.ca) for the excellent idea and 
 
 ### License
 
-MIT license
+Licensed under the MIT license, see [LICENSE](https://github.com/pttrnco/silhouette/blob/main/LICENSE) for details.
