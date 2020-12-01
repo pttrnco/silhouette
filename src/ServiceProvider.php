@@ -3,13 +3,15 @@
 namespace Pattern\Silhouette;
 
 use Illuminate\Support\Facades\Route;
+use Pattern\Silhouette\Http\Controllers\SilhouetteController;
+use Pattern\Silhouette\Tags\SilhouetteTag;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Statamic;
 
 class ServiceProvider extends AddonServiceProvider
 {
     protected $tags = [
-        \Pattern\Silhouette\Tags\SilhouetteTag::class,
+        SilhouetteTag::class,
     ];
 
     public function boot()
@@ -18,7 +20,7 @@ class ServiceProvider extends AddonServiceProvider
 
         Statamic::booted(function () {
             $this->registerActionRoutes(function () {
-                Route::get('user', \SilhouetteController::class);
+                Route::get('user', SilhouetteController::class);
             });
         });
     }
