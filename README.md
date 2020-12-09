@@ -2,7 +2,7 @@
 
 #### Dynamic user data for your static sites.
 
-If you&rsquo;ve ever wanted to add a sprinkle of user data do your static sites, Silhouette is for you.
+If you&rsquo;ve ever wanted to add a sprinkle of user data to your static sites, Silhouette is for you.
 
 ### Installation
 
