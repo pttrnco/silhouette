@@ -2,42 +2,26 @@
 
 namespace Pattern\Silhouette\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Statamic\Auth\Eloquent\User as StatamicUser;
 use Statamic\Http\Controllers\Controller;
 
 class SilhouetteController extends Controller
 {
-    protected $methods;
-    protected $user;
-
-    public function __construct()
+    public function __invoke()
     {
-        $this->middleware(function ($request, $next) {
-            $this->user = auth()->user() && config('silhouette.model')
-                ? StatamicUser::fromModel(auth()->user())
-                : auth()->user();
-
-            return $next($request);
-        });
-
-        $this->methods = [
-            'email',
-            'initials'
-        ];
-    }
-
-    public function __invoke(Request $request)
-    {
-        if ($this->user) {
+        if (auth()->check()) {
             return response()
                 ->json(
                     collect(
-                        explode(',', $request->input('attributes'))
+                        explode(',', request('attributes'))
                     )->flatMap(function ($attribute) {
+                        $isMethod = false;
+                        if (substr($attribute, -2) == '()') {
+                            $attribute = substr($attribute, 0, -2);
+                            $isMethod = true;
+                        }
                         if ($attribute != 'password') {
                             return [
-                                $attribute => $this->getAttribute($attribute)
+                                $attribute => $this->getAttribute($attribute, $isMethod)
                             ];
                         }
                     })
@@ -47,11 +31,11 @@ class SilhouetteController extends Controller
         return response()->json(false);
     }
 
-    private function getAttribute($attribute)
+    private function getAttribute($attribute, $isMethod)
     {
-        if (in_array($attribute, $this->methods)) {
-            return $this->user->{$attribute}();
+        if ($isMethod) {
+            return auth()->user()->{$attribute}();
         }
-        return $this->user->value($attribute);
+        return auth()->user()->{$attribute};
     }
 }

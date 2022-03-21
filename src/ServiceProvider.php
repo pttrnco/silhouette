@@ -2,6 +2,7 @@
 
 namespace Pattern\Silhouette;
 
+use Pattern\Silhouette\Tags\SilhouetteTag;
 use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
@@ -11,7 +12,7 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $tags = [
-        \Pattern\Silhouette\Tags\SilhouetteTag::class,
+        SilhouetteTag::class,
     ];
 
     public function boot()

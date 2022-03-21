@@ -6,6 +6,14 @@
     "require": {
         "statamic/cms": "^3.0"
     },
+    "authors": [
+        {
+            "name": "Steven Peercy"
+        }
+    ],
+    "support": {
+        "email": "steven@pttrn.co"
+    },
     "autoload": {
         "psr-4": {
             "Pattern\\Silhouette\\": "src"
@@ -14,7 +22,7 @@
     "extra": {
         "statamic": {
             "name": "Silhouette",
-            "description": "Dynamic user data for your static sites."
+            "description": "Dynamic user data for your static or cached sites."
         },
         "laravel": {
             "providers": [
